@@ -41,11 +41,28 @@ gotcr:  lda     msbas,x
         ldx     $f4
         jmp     OSBYTE
 GETIN:  jsr     OSRDCH
+        bcs     geterr
         jmp     OSWRCH
 ISCNTC: bit     $FF
         bmi     escape
         rts
+brkhnd: ldx     #$ff
+        txs
+        ldy     #$01
+        lda     ($fd),y
+        beq     brkdon
+brklp:  jsr     OSWRCH
+        iny
+        lda     ($fd),y
+        bne     brklp
+brkdon: jmp     RESTART
+
+geterr: cmp     #$1b
+        bne     notesc
 escape: lda     #$7e
         jsr     OSBYTE
-        jmp     RESTART
+        brk
+        .byte   $1b,"Escape",0
+notesc: brk
+        .byte   $00,"Input Error",0
 .endif

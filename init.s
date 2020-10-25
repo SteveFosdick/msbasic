@@ -240,6 +240,10 @@ L4098:
         sty     MEMSIZ+1
         stx     FRETOP
         sty     FRETOP+1
+        lda     #<brkhnd
+        sta     BRKV
+        lda     #>brkhnd
+        sta     BRKV+1
 .else
 .ifndef CBM2
         lda     #<RAMSTART2
@@ -274,11 +278,6 @@ L40D7:
 ; AIM65: hard RAM top limit is $A000
         lda     LINNUM+1
         cmp     #$A0
-        beq     L40FA
-.endif
-.ifdef BBCMICRO
-        lda     LINNUM+1
-        cmp     #$7C
         beq     L40FA
 .endif
 L40DD:
@@ -318,7 +317,6 @@ L40FA:
 .if !(.def(MICROTAN) || .def(AIM65) || .def(SYM1))
         sta     FRETOP
         sty     FRETOP+1
-.endif
 .endif
 L4106:
 .ifndef CONFIG_CBM_ALL
@@ -406,6 +404,7 @@ L4183:
 .endif
         stx     TXTTAB
         sty     TXTTAB+1
+.endif
         ldy     #$00
         tya
         sta     (TXTTAB),y
@@ -422,9 +421,11 @@ L4192:
         ldy     TXTTAB+1
         jsr     REASON
 .ifdef CBM2
+.ifndef BBCMICRO
         lda     #<QT_BASIC
         ldy     #>QT_BASIC
         jsr     STROUT
+.endif
 .else
         jsr     CRDO
 .endif

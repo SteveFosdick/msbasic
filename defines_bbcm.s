@@ -53,6 +53,8 @@ OSNEWL  := $ffe7
 OSASCI  := $ffe3
 OSRDCH  := $ffe0
 
+BRKV    := $0202
+
 ; monitor functions
 OPEN	:= $FFC0
 CLOSE	:= $FFC3

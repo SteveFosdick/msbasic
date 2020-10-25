@@ -45,6 +45,9 @@ COLD_START:
         ldx     #$FE
   .endif
         txs
+  .ifdef BBCMICRO
+        cli
+  .endif
   .ifndef CONFIG_CBM_ALL
         lda     #<COLD_START
         ldy     #>COLD_START
@@ -257,6 +260,11 @@ L40D7:
 ; AIM65: hard RAM top limit is $A000
         lda     LINNUM+1
         cmp     #$A0
+        beq     L40FA
+.endif
+.ifdef BBCMICRO
+        lda     LINNUM+1
+        cmp     #$7C
         beq     L40FA
 .endif
 L40DD:

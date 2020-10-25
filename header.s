@@ -39,13 +39,13 @@ gotcr:  lda     msbas,x
         bne     notus
         lda     #$8e
         ldx     $f4
-        jmp     $fff4
-GETIN:  jsr     $ffe0
-        jmp     $ffee
+        jmp     OSBYTE
+GETIN:  jsr     OSRDCH
+        jmp     OSWRCH
 ISCNTC: bit     $FF
         bmi     escape
         rts
 escape: lda     #$7e
-        jsr     $fff4
+        jsr     OSBYTE
         jmp     RESTART
 .endif

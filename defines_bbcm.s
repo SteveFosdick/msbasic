@@ -43,14 +43,24 @@ RAMSTART2		:= $0E00
 ; magic memory locations
 ENTROPY = $E844
 
+; BBC MOS CALLS
+
+OSCLI   := $fff7
+OSBYTE  := $fff4
+OSWORD  := $fff1
+OSWRCH  := $ffee
+OSNEWL  := $ffe7
+OSASCI  := $ffe3
+OSRDCH  := $ffe0
+
 ; monitor functions
 OPEN	:= $FFC0
 CLOSE	:= $FFC3
 CHKIN	:= $FFC6
 CHKOUT	:= $FFC9
 CLRCH	:= $FFCC
-CHRIN	:= $FFE0
-CHROUT	:= $FFEE
+CHRIN	:= OSRDCH
+CHROUT	:= OSWRCH
 LOAD	:= $FFD5
 SAVE	:= $FFD8
 VERIFY	:= $FFDB
@@ -61,3 +71,5 @@ CLALL	:= $FFE7
 LE7F3	:= $E7F3; for CBM1
 MONCOUT	:= CHROUT
 MONRDKEY := GETIN
+
+

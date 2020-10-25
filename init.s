@@ -227,6 +227,20 @@ L4098:
         tay
         bne     L40EE
 .endif
+.ifdef BBCMICRO
+        lda     #$83
+        jsr     OSBYTE
+        stx     TXTTAB
+        sty     TXTTAB+1
+        stx     LINNUM
+        sty     LINNUM+1
+        lda     #$84
+        jsr     OSBYTE
+        stx     MEMSIZ
+        sty     MEMSIZ+1
+        stx     FRETOP
+        sty     FRETOP+1
+.else
 .ifndef CBM2
         lda     #<RAMSTART2
 .endif
@@ -304,6 +318,7 @@ L40FA:
 .if !(.def(MICROTAN) || .def(AIM65) || .def(SYM1))
         sta     FRETOP
         sty     FRETOP+1
+.endif
 .endif
 L4106:
 .ifndef CONFIG_CBM_ALL

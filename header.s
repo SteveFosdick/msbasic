@@ -17,7 +17,7 @@
         .byte   $C2
         .byte   <copyw  ; copyright offset pointer
         .byte   1       ; binary version number.
-        .byte   "Microsoft BASIC",$00
+        .byte   "Microsoft BASIC"
 copyw:  .byte   $00,"(C) Microsoft",$00
 msbas:  .byte   "MSBASIC",$00
 serv:   cmp     #$04

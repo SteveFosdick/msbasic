@@ -52,6 +52,7 @@ OSWRCH  := $ffee
 OSNEWL  := $ffe7
 OSASCI  := $ffe3
 OSRDCH  := $ffe0
+OSFILE  := $FFDD
 
 BRKV    := $0202
 
@@ -63,8 +64,8 @@ CHKOUT	:= $FFC9
 CLRCH	:= $FFCC
 CHRIN	:= OSRDCH
 CHROUT	:= OSWRCH
-LOAD	:= $FFD5
-SAVE	:= $FFD8
+;LOAD	:= $FFD5
+;SAVE	:= $FFD8
 VERIFY	:= $FFDB
 SYS		:= $FFDE
 ;ISCNTC	:= $FFE1
